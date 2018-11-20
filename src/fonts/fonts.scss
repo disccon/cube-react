@@ -1,0 +1,25 @@
+@mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: quote($font-name);
+    src: url($file-name + '.eot');
+    src: url($file-name + '.eot?#iefix')  format('embedded-opentype'),
+    url($file-name + '.woff2') format('woff2'),
+    url($file-name + '.woff') format('woff'),
+    url($file-name + '.ttf')  format('truetype'),
+    url($file-name + '.svg##{$font-name}')  format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+//@font-face {
+//  font-family: 'PT Sans';
+//  src: url('ptsans-regular.eot');
+//  src: url('ptsans-regular.eot?#iefix') format('embedded-opentype'),
+//  url('ptsans-regular.woff2') format('woff2'),
+//  url('ptsans-regular.woff') format('woff'),
+//  url('ptsans-regular.ttf') format('truetype'),
+//  url('ptsans-regular.svg#PT Sans Regular') format('svg');
+//  font-weight: normal;
+//  font-style: normal;
+//}
