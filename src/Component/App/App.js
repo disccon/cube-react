@@ -48,7 +48,6 @@ export default class App extends React.Component{
             });
         }
         let addNewTableCell = [...this.state.TableCell];
-        let addNewCell = [];
         for (let i = 0; i < this.state.TableCell.length; i++) {
             addNewTableCell[i].push([i+1,this.state.TableCell[i].length + 1])
         }
@@ -78,7 +77,7 @@ export default class App extends React.Component{
         //     this.minusTop.current.style.left = minusTopPositionLeft - (this.state.cellSize + 2) + 'px';
         // }
         let target = event.target
-        const indexSell = (this.state.minusTop - 5) / 52;
+        const indexSell = (this.state.minusTop - 5) / (this.state.cellSize +2);
         if( 1 < this.state.TableCell[0].length) {
             if( 2 === this.state.TableCell[0].length) {
                 this.setState({
@@ -88,7 +87,7 @@ export default class App extends React.Component{
             let newTableCell = [];
             for (let i = 0; i < this.state.TableCell.length; i++) {
                 let deleteCell = [
-                    ...this.state.TableCell[i].slice(0, indexSell),
+                    ...this.state.TableCell[i].slice(0,indexSell),
                     ...this.state.TableCell[i].slice(indexSell + 1),
                 ]
                 newTableCell.push(deleteCell)
@@ -132,7 +131,7 @@ export default class App extends React.Component{
                     minusLeftDisplay:  false,
                 });
             }
-            const indexRow = (this.state.minusLeft - 5) /52;
+            const indexRow = (this.state.minusLeft - 5) / (this.state.cellSize + 2);
             let newTableRow = [
                 ...this.state.TableCell.slice(0, indexRow),
                 ...this.state.TableCell.slice(indexRow + 1),
