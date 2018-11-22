@@ -18,7 +18,9 @@ const  Table = ({children,styleSize}) => (
     </table>
 );
 // Table.propTypes = {
-//     cells: PropTypes.array.isRequired,
+//     children: PropTypes.array,
+//     styleSize: PropTypes.object.isRequired,
+//
 // };
 
 

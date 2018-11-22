@@ -8,7 +8,11 @@ const Button = ({children,classButton,position,handleClick}) =>(
 );
 
 // Button.propTypes = {
-//     cells: PropTypes.array.isRequired,
+//     position: PropTypes.object.isRequired,
+//     handleClick: PropTypes.func.isRequired,
+//     children: PropTypes.string,
+//     classButton: PropTypes.string,
+//
 // };
 
 

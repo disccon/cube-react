@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from "../Table/Table";
 import Button from "../Button/Button";
-import uuid from "uuid/v4";
+
 
 let setTimeoutMouseleave;
 export default class App extends React.Component{
@@ -9,7 +9,7 @@ export default class App extends React.Component{
         super(props);
         this.state = {
             TableCell: null,
-            initialWidth: 6,
+            initialWidth: 4,
             initialHeight: 4,
             cellSize: 50,
             minusTopDisplay: false,
@@ -18,12 +18,6 @@ export default class App extends React.Component{
             minusLeft: "5px",
         };
     }
-        // this.minusTop = React.createRef();
-        // this.minusLeft = React.createRef();
-        // this.tableBody = React.createRef();
-    // this.minusTop = React.createRef();
-    // this.minusLeft = React.createRef();
-    // this.tableBody = React.createRef();
     componentWillMount(){
         this.setState({
             TableCell: this.initialTableCells(),
@@ -38,7 +32,6 @@ export default class App extends React.Component{
             }
             table.push(children)
         }
-        console.log(table)
         return table;
     }
     addCell = () => {
@@ -72,10 +65,6 @@ export default class App extends React.Component{
         });
     };
     deleteCells = (event) => {
-        //let minusTopPositionLeft = parseInt(target.left, 10);
-        // if (minusTopPositionLeft + (this.state.cellSize + 2 ) > this.tableBody.current.getBoundingClientRect().width && 1 < this.state.initialWidth) {
-        //     this.minusTop.current.style.left = minusTopPositionLeft - (this.state.cellSize + 2) + 'px';
-        // }
         let target = event.target
         const indexSell = (this.state.minusTop - 5) / (this.state.cellSize +2);
         if( 1 < this.state.TableCell[0].length) {
@@ -101,29 +90,8 @@ export default class App extends React.Component{
                 });
             }
         }
-        // if(1 < this.state.TableCell.length) {
-        //     console.log(this.state.TableCell);
-        //     if(2 === this.state.TableCell.length) {
-        //         this.setState({
-        //             minusTopDisplay: false,
-        //         });
-        //     }
-        //     this.setState(prevState => ({
-        //         initialWidth: prevState.initialWidth - 1
-        //     }));
-        //     let add = this.state.TableCell;
-        //     delete add[0];
-        //     this.setState({
-        //         TableCell: add,
-        //     });
-        //
-        // }
     };
     deleteRow = (event) => {
-        // let minusLeftPositionTop = parseInt( this.minusLeft.current.style.top, 10);
-        // if (minusLeftPositionTop + (this.state.cellSize + 2 ) > this.tableBody.current.getBoundingClientRect().height && 1 < this.state.initialHeight) {
-        //     this.minusLeft.current.style.top = minusLeftPositionTop - (this.state.cellSize + 2) + 'px';
-        // }
         let target = event.target
         if(1 < this.state.TableCell.length) {
             if(2 === this.state.TableCell.length) {
@@ -148,11 +116,7 @@ export default class App extends React.Component{
         }
     };
     mouseOverTable = ({target}) => {
-        //console.log('11',pageX,pageY,clientX,clientY)
-        //console.log(this.tableBody.current.getBoundingClientRect())
-        // let target = event.target
         clearTimeout(setTimeoutMouseleave)
-        // console.log('dasdasd')
         if (1 < this.state.TableCell.length){
             this.setState({
                 minusLeftDisplay:  true,
@@ -165,10 +129,6 @@ export default class App extends React.Component{
         }
         if( target.tagName === "TD"){
             this.setState({
-                //minusTop: (target.cellIndex * (this.state.cellSize + 2 )) + 5 + "px",
-                //minusLeft: (target.parentElement.rowIndex * (this.state.cellSize + 2) ) + 5 + "px",
-                // minusTop: parseInt( target.getBoundingClientRect().left - target.parentElement.parentElement.getBoundingClientRect().left,10) +5,
-                // minusLeft: parseInt( target.getBoundingClientRect().top - target.parentElement.parentElement.getBoundingClientRect().top,10) +5,
                 minusTop: target.offsetLeft + 2,
                 minusLeft: target.offsetTop + 2,
             });
@@ -187,11 +147,9 @@ export default class App extends React.Component{
             width: this.state.cellSize + "px",
             height: this.state.cellSize + "px"
         };
-        // console.log(this.state.TableCell)
         let minusTop = {
             left: this.state.minusTop +"px",
         };
-        //handleMouseMove
         let minusLeft = {
             top: this.state.minusLeft +"px",
         };
