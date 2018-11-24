@@ -8,8 +8,8 @@ export default class App extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            TableCell: null,
-            initialWidth: 4,
+            tableCell: null,
+            initialWidth: 6,
             initialHeight: 4,
             cellSize: 50,
             minusTopDisplay: false,
@@ -20,7 +20,7 @@ export default class App extends React.Component{
     }
     componentWillMount(){
         this.setState({
-            TableCell: this.initialTableCells(),
+            tableCell: this.initialTableCells(),
         });
     }
     initialTableCells = () => {
@@ -28,87 +28,85 @@ export default class App extends React.Component{
         for (let i = 0; i < this.state.initialHeight; i++) {
             let children = []
             for (let j = 0; j < this.state.initialWidth; j++) {
-                children.push([i+1,j+1])
+                children.push(Number(`${i+1}${j+1}`))
             }
             table.push(children)
         }
         return table;
     }
     addCell = () => {
-        if(1 < this.state.initialWidth) {
+        if( this.state.tableCell[0].length > 1) {
             this.setState({
                 minusTopDisplay:  true,
             });
         }
-        let addNewTableCell = [...this.state.TableCell];
-        for (let i = 0; i < this.state.TableCell.length; i++) {
-            addNewTableCell[i].push([i+1,this.state.TableCell[i].length + 1])
+        let addNewTableCell = [...this.state.tableCell];
+        for (let i = 0; i < this.state.tableCell.length; i++) {
+            addNewTableCell[i].push(this.state.tableCell[i][this.state.tableCell[i].length -1] +1)
         }
         this.setState({
-            TableCell:  addNewTableCell
+            tableCell:  addNewTableCell
         });
     };
     addRow = () => {
-        if(1 < this.state.initialHeight) {
+        if(this.state.tableCell.length > 1){
             this.setState({
                 minusLeftDisplay: true,
             });
         }
-        let addNewTableRow = [...this.state.TableCell];
         let addNewRow = [];
-        for (let i = 0; i < this.state.TableCell[0].length; i++) {
-            addNewRow.push([this.state.TableCell.length +1,i+1])
+        for (let i = 0; i < this.state.tableCell[0].length; i++) {
+            addNewRow.push(this.state.tableCell[this.state.tableCell.length -1][i] +10)
         }
-        addNewTableRow.push(addNewRow)
         this.setState({
-            TableCell:  addNewTableRow
+            tableCell: [ ...this.state.tableCell,
+                         addNewRow ]
         });
     };
-    deleteCells = (event) => {
-        let target = event.target
-        const indexSell = (this.state.minusTop - 5) / (this.state.cellSize +2);
-        if( 1 < this.state.TableCell[0].length) {
-            if( 2 === this.state.TableCell[0].length) {
-                this.setState({
-                    minusTopDisplay: false,
-                });
-            }
+    deleteCells = ({target}) => {
+        const indexCell = (this.state.minusTop - 5) / (this.state.cellSize +2);
+        const parentTarget = target.parentElement.getBoundingClientRect().width
+        const tableCellLength = this.state.tableCell[0].length;
+        if( tableCellLength <= 2) {
+            this.setState({
+                minusTopDisplay: false,
+            });
+        }
+        if( tableCellLength > 1) {
             let newTableCell = [];
-            for (let i = 0; i < this.state.TableCell.length; i++) {
-                let deleteCell = [
-                    ...this.state.TableCell[i].slice(0,indexSell),
-                    ...this.state.TableCell[i].slice(indexSell + 1),
-                ]
+            let deleteCell = [];
+            for (let i = 0; i < this.state.tableCell.length; i++) {
+                deleteCell = this.state.tableCell[i].filter((arrIndex, index, arr) => {
+                    return index !== indexCell
+                });
                 newTableCell.push(deleteCell)
             }
             this.setState({
-                TableCell: newTableCell
+                tableCell: newTableCell
             });
-            if(target.parentElement.getBoundingClientRect().width < event.target.getBoundingClientRect().left ){
+            if( parentTarget < target.getBoundingClientRect().left ){
                 this.setState({
-                    minusTop: target.parentElement.getBoundingClientRect().width - 2 * (this.state.cellSize + 2) - 3,
+                    minusTop: parentTarget - 2 * (this.state.cellSize + 2) - 3,
                 });
             }
         }
     };
-    deleteRow = (event) => {
-        let target = event.target
-        if(1 < this.state.TableCell.length) {
-            if(2 === this.state.TableCell.length) {
-                this.setState({
-                    minusLeftDisplay:  false,
-                });
-            }
-            const indexRow = (this.state.minusLeft - 5) / (this.state.cellSize + 2);
-            let newTableRow = [
-                ...this.state.TableCell.slice(0, indexRow),
-                ...this.state.TableCell.slice(indexRow + 1),
-            ]
+    deleteRow = ({target}) => {
+        const tableRowLength = this.state.tableCell.length;
+        const indexRow = (this.state.minusLeft - 5) / (this.state.cellSize + 2) ;
+        if( tableRowLength <= 2) {
             this.setState({
-                TableCell: newTableRow
+                minusLeftDisplay:  false,
             });
-
-            if(target.parentElement.getBoundingClientRect().height < event.target.getBoundingClientRect().top ){
+        }
+        if( tableRowLength > 1) {
+            let newTableRow = this.state.tableCell.filter((arrIndex, index, arr) => {
+                return index !== indexRow
+            });
+            this.setState({
+                tableCell: newTableRow
+            });
+            if(target.parentElement.getBoundingClientRect().height < target.getBoundingClientRect().top ){
                 this.setState({
                     minusLeft: target.parentElement.getBoundingClientRect().height - 2 * (this.state.cellSize + 2) - 3,
                 });
@@ -117,12 +115,12 @@ export default class App extends React.Component{
     };
     mouseOverTable = ({target}) => {
         clearTimeout(setTimeoutMouseleave)
-        if (1 < this.state.TableCell.length){
+        if (this.state.tableCell.length > 1){
             this.setState({
                 minusLeftDisplay:  true,
             });
         }
-        if(1 < this.state.TableCell[0].length){
+        if(this.state.tableCell[0].length > 1){
             this.setState({
                 minusTopDisplay: true,
             });
@@ -143,38 +141,38 @@ export default class App extends React.Component{
         }, 3000);
     };
     render() {
-        let sizeStyle = {
-            width: this.state.cellSize + "px",
-            height: this.state.cellSize + "px"
+        const { minusTopDisplay, minusLeftDisplay, cellSize, minusTop, minusLeft, tableCell } = this.state;
+        const sizeStyle = {
+            width: cellSize + "px",
+            height: cellSize + "px"
         };
-        let minusTop = {
-            left: this.state.minusTop +"px",
+        const minusTopPx = {
+            left: minusTop +"px",
         };
-        let minusLeft = {
-            top: this.state.minusLeft +"px",
+        const minusLeftPx = {
+            top: minusLeft +"px",
         };
-        let { minusTopDisplay,minusLeftDisplay } = this.state;
         return (
             <div className="block-table">
                 <div className="wrapper-table" onMouseLeave={this.leaveTable} onMouseOver={this.mouseOverTable}>
-                    <Button classButton={`button-minus button-minus_top ${minusTopDisplay === true ? 'button-minus_animation-display' : null}`} position={minusTop}
-                            handleClick={this.deleteCells}>
+                    <Button classButton={`button-minus button-minus_top ${minusTopDisplay === true ? 'button-minus_animation-display' : ''}`}
+                            position={minusTopPx} handleClick={this.deleteCells}>
                         <span>-</span>
                     </Button>
-                    <Button classButton={`button-minus button-minus_left ${minusLeftDisplay === true ? 'button-minus_animation-display' : null}`} position={minusLeft}
-                            handleClick={this.deleteRow}>
+                    <Button classButton={`button-minus button-minus_left ${minusLeftDisplay === true ? 'button-minus_animation-display' : ''}`}
+                            position={minusLeftPx} handleClick={this.deleteRow}>
                         <span>-</span>
                     </Button>
                     <Button classButton="button-plus button-plus_right"
                             handleClick={this.addCell}>
-                            +
+                        <span>+</span>
                     </Button>
                     <Button classButton="button-plus button-plus_bottom"
                             handleClick={this.addRow}>
-                            +
+                        <span>+</span>
                     </Button>
-                    <Table styleSize={sizeStyle}>
-                        {this.state.TableCell}
+                    <Table sizeStyle={sizeStyle}>
+                        {tableCell}
                     </Table>
                 </div>
             </div>

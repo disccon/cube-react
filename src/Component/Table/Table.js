@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import uuid from "uuid/v4";
 
-const  Table = ({children,styleSize}) => (
+
+const Table = ({children,sizeStyle}) => (
     <table className="table">
         <tbody>
-            {children.map((trList) => {
-                return <tr key={uuid()}>
-                        {trList.map((tdList) => {
-                            return <td key={uuid()} style={styleSize}>{tdList}</td>
+            {children.map((trLists,index) => {
+                return <tr key={trLists[0]}>
+                        {trLists.map((tdList,index) => {
+                            return <td key={tdList} style={sizeStyle}>{tdList}</td>
                         })
                         }
                 </tr>
@@ -17,11 +17,15 @@ const  Table = ({children,styleSize}) => (
         </tbody>
     </table>
 );
-// Table.propTypes = {
-//     children: PropTypes.array,
-//     styleSize: PropTypes.object.isRequired,
-//
-// };
+Table.propTypes = {
+    children: PropTypes.array.isRequired,
+    styleSize: PropTypes.object.isRequired,
 
-
+};
+Table.defaultProps = {
+    styleSize:  {
+        width: 50 + "px",
+        height: 50 + "px"
+    }
+};
 export default Table;
