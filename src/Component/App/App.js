@@ -146,21 +146,15 @@ export default class App extends React.Component{
             width: cellSize + "px",
             height: cellSize + "px"
         };
-        const minusTopPx = {
-            left: minusTop +"px",
-        };
-        const minusLeftPx = {
-            top: minusLeft +"px",
-        };
         return (
             <div className="block-table">
                 <div className="wrapper-table" onMouseLeave={this.leaveTable} onMouseOver={this.mouseOverTable}>
                     <Button classButton={`button-minus button-minus_top ${minusTopDisplay === true ? 'button-minus_animation-display' : ''}`}
-                            position={minusTopPx} handleClick={this.deleteCells}>
+                            minusTop={minusTop} handleClick={this.deleteCells}>
                         <span>-</span>
                     </Button>
                     <Button classButton={`button-minus button-minus_left ${minusLeftDisplay === true ? 'button-minus_animation-display' : ''}`}
-                            position={minusLeftPx} handleClick={this.deleteRow}>
+                            minusLeft={minusLeft} handleClick={this.deleteRow}>
                         <span>-</span>
                     </Button>
                     <Button classButton="button-plus button-plus_right"
