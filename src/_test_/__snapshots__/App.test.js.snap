@@ -11,16 +11,16 @@ exports[`should render a App 1`] = `
       onMouseOver={[Function]}
     >
       <Button
-        classButton="button-minus button-minus_top "
+        classButton="button-minus button-minus_top button-minus_animation-display"
         handleClick={[Function]}
-        minusTop={5}
+        minusTop={3}
       >
         <button
-          className="button-minus button-minus_top "
+          className="button-minus button-minus_top button-minus_animation-display"
           onClick={[Function]}
           style={
             Object {
-              "left": "5px",
+              "left": "3px",
               "top": "undefinedpx",
             }
           }
@@ -32,17 +32,17 @@ exports[`should render a App 1`] = `
         </button>
       </Button>
       <Button
-        classButton="button-minus button-minus_left "
+        classButton="button-minus button-minus_left button-minus_animation-display"
         handleClick={[Function]}
-        minusLeft={5}
+        minusLeft={3}
       >
         <button
-          className="button-minus button-minus_left "
+          className="button-minus button-minus_left button-minus_animation-display"
           onClick={[Function]}
           style={
             Object {
               "left": "undefinedpx",
-              "top": "5px",
+              "top": "3px",
             }
           }
           type="button"
