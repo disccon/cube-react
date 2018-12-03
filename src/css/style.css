@@ -90,14 +90,14 @@ body {
   opacity: 1;
   transition: opacity 0.4s ease-in-out, visibility 0s ease-in-out, top 0.4s linear, left 0.4s linear;
 }
-.container .block-table .wrapper-table .table {
+.container .block-table .wrapper-table .wrapper {
   border: 1px solid #48aae6;
+}
+.container .block-table .wrapper-table .wrapper .table {
   border-spacing: 2px;
   border-collapse: separate;
-  min-width: 56px;
-  height: 56px;
 }
-.container .block-table .wrapper-table .table tbody tr td {
+.container .block-table .wrapper-table .wrapper .table tbody tr td {
   background: #48aae6;
 }
 

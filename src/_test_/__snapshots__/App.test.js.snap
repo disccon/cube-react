@@ -1,0 +1,315 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a App 1`] = `
+<App>
+  <div
+    className="block-table"
+  >
+    <div
+      className="wrapper-table"
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    >
+      <Button
+        classButton="button-minus button-minus_top "
+        handleClick={[Function]}
+        minusTop={5}
+      >
+        <button
+          className="button-minus button-minus_top "
+          onClick={[Function]}
+          style={
+            Object {
+              "left": "5px",
+              "top": "undefinedpx",
+            }
+          }
+          type="button"
+        >
+          <span>
+            -
+          </span>
+        </button>
+      </Button>
+      <Button
+        classButton="button-minus button-minus_left "
+        handleClick={[Function]}
+        minusLeft={5}
+      >
+        <button
+          className="button-minus button-minus_left "
+          onClick={[Function]}
+          style={
+            Object {
+              "left": "undefinedpx",
+              "top": "5px",
+            }
+          }
+          type="button"
+        >
+          <span>
+            -
+          </span>
+        </button>
+      </Button>
+      <Button
+        classButton="button-plus button-plus_right"
+        handleClick={[Function]}
+      >
+        <button
+          className="button-plus button-plus_right"
+          onClick={[Function]}
+          style={
+            Object {
+              "left": "undefinedpx",
+              "top": "undefinedpx",
+            }
+          }
+          type="button"
+        >
+          <span>
+            +
+          </span>
+        </button>
+      </Button>
+      <Button
+        classButton="button-plus button-plus_bottom"
+        handleClick={[Function]}
+      >
+        <button
+          className="button-plus button-plus_bottom"
+          onClick={[Function]}
+          style={
+            Object {
+              "left": "undefinedpx",
+              "top": "undefinedpx",
+            }
+          }
+          type="button"
+        >
+          <span>
+            +
+          </span>
+        </button>
+      </Button>
+      <Table
+        sizeStyle={
+          Object {
+            "height": "50px",
+            "width": "50px",
+          }
+        }
+        styleSize={
+          Object {
+            "height": "50px",
+            "width": "50px",
+          }
+        }
+      >
+        <div
+          className="wrapper"
+        >
+          <table
+            className="table"
+          >
+            <tbody>
+              <tr
+                key="11"
+              >
+                <td
+                  key="11"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  11
+                </td>
+                <td
+                  key="12"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  12
+                </td>
+                <td
+                  key="13"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  13
+                </td>
+                <td
+                  key="14"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  14
+                </td>
+              </tr>
+              <tr
+                key="21"
+              >
+                <td
+                  key="21"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  21
+                </td>
+                <td
+                  key="22"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  22
+                </td>
+                <td
+                  key="23"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  23
+                </td>
+                <td
+                  key="24"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  24
+                </td>
+              </tr>
+              <tr
+                key="31"
+              >
+                <td
+                  key="31"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  31
+                </td>
+                <td
+                  key="32"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  32
+                </td>
+                <td
+                  key="33"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  33
+                </td>
+                <td
+                  key="34"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  34
+                </td>
+              </tr>
+              <tr
+                key="41"
+              >
+                <td
+                  key="41"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  41
+                </td>
+                <td
+                  key="42"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  42
+                </td>
+                <td
+                  key="43"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  43
+                </td>
+                <td
+                  key="44"
+                  style={
+                    Object {
+                      "height": "50px",
+                      "width": "50px",
+                    }
+                  }
+                >
+                  44
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Table>
+    </div>
+  </div>
+</App>
+`;

@@ -85,18 +85,16 @@ body{
         opacity: 1;
         transition: opacity .4s ease-in-out, visibility 0s ease-in-out ,top .4s linear,left .4s linear;
       }
-      .table {
+      .wrapper{
         border: 1px solid #48aae6;
-        border-spacing: 2px;
-        border-collapse: separate;
-        min-width: 56px;
-        height: 56px;
-        tbody {
-          tr {
-            td {
-
-
-              background: #48aae6;
+        .table {
+          border-spacing: 2px;
+          border-collapse: separate;
+          tbody {
+            tr {
+              td {
+                background: #48aae6;
+              }
             }
           }
         }

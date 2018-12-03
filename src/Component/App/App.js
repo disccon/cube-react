@@ -9,13 +9,13 @@ export default class App extends React.Component{
         super(props);
         this.state = {
             tableCell: null,
-            initialWidth: 6,
+            initialWidth: 4,
             initialHeight: 4,
             cellSize: 50,
             minusTopDisplay: false,
             minusLeftDisplay: false,
-            minusTop: "5px",
-            minusLeft: "5px",
+            minusTop: 5,
+            minusLeft:  5,
         };
     }
     componentWillMount(){
@@ -35,7 +35,7 @@ export default class App extends React.Component{
         return table;
     }
     addCell = () => {
-        if( this.state.tableCell[0].length > 1) {
+        if(this.state.tableCell[0].length > 1) {
             this.setState({
                 minusTopDisplay:  true,
             });
@@ -45,7 +45,7 @@ export default class App extends React.Component{
             addNewTableCell[i].push(this.state.tableCell[i][this.state.tableCell[i].length -1] +1)
         }
         this.setState({
-            tableCell:  addNewTableCell
+            tableCell: addNewTableCell
         });
     };
     addRow = () => {
@@ -63,16 +63,17 @@ export default class App extends React.Component{
                          addNewRow ]
         });
     };
-    deleteCells = ({target}) => {
-        const indexCell = (this.state.minusTop - 5) / (this.state.cellSize +2);
-        const parentTarget = target.parentElement.getBoundingClientRect().width
+    deleteCells = (minusTop) => {
+        const { cellSize } = this.state;
+        const indexCell = (this.state.minusTop - 5) / (cellSize + 2);
         const tableCellLength = this.state.tableCell[0].length;
-        if( tableCellLength <= 2) {
+        let tableWidth = tableCellLength * (cellSize + 2) + 3 - cellSize
+        if(tableCellLength <= 2) {
             this.setState({
                 minusTopDisplay: false,
             });
         }
-        if( tableCellLength > 1) {
+        if(tableCellLength > 1) {
             let newTableCell = [];
             let deleteCell = [];
             for (let i = 0; i < this.state.tableCell.length; i++) {
@@ -84,38 +85,41 @@ export default class App extends React.Component{
             this.setState({
                 tableCell: newTableCell
             });
-            if( parentTarget < target.getBoundingClientRect().left ){
+
+            if(minusTop >= tableWidth){
                 this.setState({
-                    minusTop: parentTarget - 2 * (this.state.cellSize + 2) - 3,
+                    minusTop: tableWidth - ( cellSize + 2) ,
                 });
             }
         }
     };
-    deleteRow = ({target}) => {
+    deleteRow = (minusTop,minusLeft) => {
+        const { cellSize } = this.state;
         const tableRowLength = this.state.tableCell.length;
-        const indexRow = (this.state.minusLeft - 5) / (this.state.cellSize + 2) ;
-        if( tableRowLength <= 2) {
+        const tableHeight = tableRowLength * (cellSize + 2) + 3 - cellSize
+        const indexRow = (this.state.minusLeft - 5) / (cellSize + 2) ;
+        if(tableRowLength <= 2) {
             this.setState({
                 minusLeftDisplay:  false,
             });
         }
-        if( tableRowLength > 1) {
+        if(tableRowLength > 1) {
             let newTableRow = this.state.tableCell.filter((arrIndex, index, arr) => {
                 return index !== indexRow
             });
             this.setState({
                 tableCell: newTableRow
             });
-            if(target.parentElement.getBoundingClientRect().height < target.getBoundingClientRect().top ){
+            if(minusLeft >= tableHeight){
                 this.setState({
-                    minusLeft: target.parentElement.getBoundingClientRect().height - 2 * (this.state.cellSize + 2) - 3,
+                    minusLeft: tableHeight - ( cellSize + 2) ,
                 });
             }
         }
     };
     mouseOverTable = ({target}) => {
         clearTimeout(setTimeoutMouseleave)
-        if (this.state.tableCell.length > 1){
+        if(this.state.tableCell.length > 1){
             this.setState({
                 minusLeftDisplay:  true,
             });
@@ -125,10 +129,10 @@ export default class App extends React.Component{
                 minusTopDisplay: true,
             });
         }
-        if( target.tagName === "TD"){
+        if(target.tagName === "TD"){
             this.setState({
-                minusTop: target.offsetLeft + 2,
-                minusLeft: target.offsetTop + 2,
+                minusTop: target.offsetLeft + 3,
+                minusLeft: target.offsetTop + 3,
             });
         }
     };
