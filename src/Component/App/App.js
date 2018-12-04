@@ -63,7 +63,7 @@ export default class App extends React.Component{
                          addNewRow ]
         });
     };
-    deleteCells = (minusTop) => {
+    deleteCells = () => {
         const { cellSize } = this.state;
         const indexCell = (this.state.minusTop - 5) / (cellSize + 2);
         const tableCellLength = this.state.tableCell[0].length;
@@ -86,14 +86,14 @@ export default class App extends React.Component{
                 tableCell: newTableCell
             });
 
-            if(minusTop >= tableWidth){
+            if(this.state.minusTop >= tableWidth){
                 this.setState({
                     minusTop: tableWidth - ( cellSize + 2) ,
                 });
             }
         }
     };
-    deleteRow = (minusTop,minusLeft) => {
+    deleteRow = () => {
         const { cellSize } = this.state;
         const tableRowLength = this.state.tableCell.length;
         const tableHeight = tableRowLength * (cellSize + 2) + 3 - cellSize
@@ -110,7 +110,7 @@ export default class App extends React.Component{
             this.setState({
                 tableCell: newTableRow
             });
-            if(minusLeft >= tableHeight){
+            if(this.state.minusLeft >= tableHeight){
                 this.setState({
                     minusLeft: tableHeight - ( cellSize + 2) ,
                 });
