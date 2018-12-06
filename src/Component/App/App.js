@@ -50,7 +50,7 @@ export default class App extends React.Component{
         const { table } = this.state;
         //table: [...table, [...table[table.length -1],{row: table[table.length -1].row + 1, cell: table[table.length -1].cell}]]
         this.setState({
-            table: [...table, table[table.length -1].map((trLists) => { return{ row: trLists.row + 1, cell: trLists.cell}})]
+            table: [...table, table[table.length -1].map((trLists) => { return{ row: trLists.row + 1, cell: trLists.cell}})],
         });
     };
     deleteCells = () => {
@@ -58,7 +58,7 @@ export default class App extends React.Component{
         const { keyCell } = this.state;
         const { cellSize } = this.state;
         const tableCellLength = this.state.table[0].length;
-        let tableWidth = tableCellLength * (cellSize + 2) + 3 - cellSize
+        let tableWidth = tableCellLength * (cellSize + 2) + 3 - cellSize;
         if(tableCellLength <= 2) {
             this.setState({
                 minusTopDisplay: false,
@@ -82,7 +82,7 @@ export default class App extends React.Component{
             });
             if(this.state.minusTop >= tableWidth){
                 this.setState({
-                    minusTop: tableWidth - ( cellSize + 2) ,
+                    minusTop: tableWidth - ( cellSize + 2),
                 });
             }
         }
@@ -90,8 +90,8 @@ export default class App extends React.Component{
     deleteRow = () => {
         const { cellSize } = this.state;
         const tableRowLength = this.state.table.length;
-        const tableHeight = tableRowLength * (cellSize + 2) + 3 - cellSize
-        const indexRow = (this.state.minusLeft - 5) / (cellSize + 2) ;
+        const tableHeight = tableRowLength * (cellSize + 2) + 3 - cellSize;
+        const indexRow = (this.state.minusLeft - 5) / (cellSize + 2);
         const { table } = this.state;
         const { keyRow } = this.state;
         let newKey;
@@ -120,7 +120,7 @@ export default class App extends React.Component{
             });
             if(this.state.minusLeft >= tableHeight){
                 this.setState({
-                    minusLeft: tableHeight - ( cellSize + 2) ,
+                    minusLeft: tableHeight - ( cellSize + 2),
                 });
             }
         }
@@ -178,7 +178,6 @@ export default class App extends React.Component{
         });
         return (
             <div className={blockTable}>
-
                 <div className={wrapperTable} onMouseLeave={this.leaveTable} onMouseOver={this.mouseOverTable}>
                     <Button classButton={minusTopDisplayClass} cellSize={cellSize}
                             minusTop={minusTop} handleClick={this.deleteCells}>

@@ -14,25 +14,27 @@ it('Table get props', () => {
 
 it('Button .at(0) get props', () => {
     const wrapper = mount(<App/>);
-    expect(wrapper.find(Button).at(0).get(0).props.classButton).toEqual('button-minus button-minus_left');
-    expect(wrapper.find(Button).at(0).get(0).props.cellSize).toEqual('50');
+    expect(wrapper.find(Button).at(0).get(0).props.classButton).toEqual('button-minus button-minus_top');
+    expect(wrapper.find(Button).at(0).get(0).props.cellSize).toEqual(50);
+    expect(wrapper.find(Button).at(0).get(0).props.minusTop).toEqual(5);
 });
 
 
 it('Button .at(1) get props', () => {
     const wrapper = mount(<App/>);
     expect(wrapper.find(Button).at(1).get(0).props.classButton).toEqual('button-minus button-minus_left');
-    expect(wrapper.find(Button).at(1).get(0).props.cellSize).toEqual('50');
+    expect(wrapper.find(Button).at(1).get(0).props.cellSize).toEqual(50);
+    expect(wrapper.find(Button).at(1).get(0).props.minusLeft).toEqual(5);
 });
 
 it('Button .at(2) get props', () => {
     const wrapper = mount(<App/>);
-    expect(wrapper.find(Button).at(2).get(0).props.classButton).toEqual('button-minus button-minus_left');
+    expect(wrapper.find(Button).at(2).get(0).props.classButton).toEqual('button-plus button-plus_right');
     expect(wrapper.find(Button).at(2).get(0).props.cellSize).toEqual(50);
 });
 it('Button .at(3) get props', () => {
     const wrapper = mount(<App/>);
-    expect(wrapper.find(Button).at(3).get(0).props.classButton).toEqual('button-minus button-minus_left');
+    expect(wrapper.find(Button).at(3).get(0).props.classButton).toEqual('button-plus button-plus_bottom');
     expect(wrapper.find(Button).at(3).get(0).props.cellSize).toEqual(50);
 });
 

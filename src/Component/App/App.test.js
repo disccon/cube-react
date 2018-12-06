@@ -19,6 +19,8 @@ it('State App', () => {
     expect(wrapper.state().minusLeftDisplay).toEqual(false);
     expect(wrapper.state().minusTop).toEqual(5);
     expect(wrapper.state().minusLeft).toEqual(5);
+    expect(wrapper.state().keyRow).toEqual(null);
+    expect(wrapper.state().keyCell).toEqual(null);
 });
 
 
