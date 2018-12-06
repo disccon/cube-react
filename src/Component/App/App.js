@@ -54,17 +54,15 @@ export default class App extends React.Component{
         });
     };
     deleteCells = () => {
-        const { table } = this.state;
-        const { keyCell } = this.state;
-        const { cellSize } = this.state;
-        const tableCellLength = this.state.table[0].length;
+        const { table, keyCell, cellSize, minusTop } = this.state;
+        const tableCellLength = table[0].length;
         let tableWidth = tableCellLength * (cellSize + 2) + 3 - cellSize;
         if(tableCellLength <= 2) {
             this.setState({
                 minusTopDisplay: false,
             });
         }
-        const indexCell = (this.state.minusTop - 5) / (cellSize + 2);
+        const indexCell = (minusTop - 5) / (cellSize + 2);
         let newKey;
         if( indexCell === (tableCellLength - 1) && tableCellLength > 1){
             newKey = table[0][indexCell -1].cell
@@ -80,7 +78,7 @@ export default class App extends React.Component{
                 table: newTableCell,
                 keyCell: newKey,
             });
-            if(this.state.minusTop >= tableWidth){
+            if(minusTop >= tableWidth){
                 this.setState({
                     minusTop: tableWidth - ( cellSize + 2),
                 });
@@ -88,12 +86,10 @@ export default class App extends React.Component{
         }
     };
     deleteRow = () => {
-        const { cellSize } = this.state;
-        const tableRowLength = this.state.table.length;
+        const { table, cellSize, keyRow, minusLeft } = this.state;
+        const tableRowLength = table.length;
         const tableHeight = tableRowLength * (cellSize + 2) + 3 - cellSize;
-        const indexRow = (this.state.minusLeft - 5) / (cellSize + 2);
-        const { table } = this.state;
-        const { keyRow } = this.state;
+        const indexRow = (minusLeft - 5) / (cellSize + 2);
         let newKey;
         if( indexRow === (tableRowLength - 1) && tableRowLength > 1){
             newKey = table[indexRow -1][0].row
@@ -118,7 +114,7 @@ export default class App extends React.Component{
                table: newTableRow,
                keyRow: newKey,
             });
-            if(this.state.minusLeft >= tableHeight){
+            if(minusLeft >= tableHeight){
                 this.setState({
                     minusLeft: tableHeight - ( cellSize + 2),
                 });
