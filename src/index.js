@@ -4,9 +4,9 @@ import App from "./Component/App/App";
 // Fonts CSS
 import './fonts/fonts.css';
 //Reset CSS
-import './css/reset.css';
-//Style CSS
-import './css/style.css';
+// import './css/reset.css';
+// //Style CSS
+// import './css/style.css';
 
 
 render(

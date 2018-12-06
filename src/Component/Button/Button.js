@@ -1,9 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({children,classButton,position,handleClick,minusTop,minusLeft}) =>(
-    <button type="button" className={classButton} style={{left: minusTop + 'px',top: minusLeft + 'px'}} onClick={handleClick}>
-        {children}
+import classNames from 'classnames/bind';
+
+import styles from './Button.css';
+
+let cx = classNames.bind(styles);
+
+// const classButtonProps = cx({
+//     [classButton]: true,
+// });
+
+const Button = ({children,classButton,handleClick,minusTop,minusLeft,cellSize}) =>(
+    <button type="button" className={classButton}
+            style={{left: `${minusTop}px`,top: `${minusLeft}px`, width: `${cellSize}px`, height: `${cellSize}px` }}
+            onClick={handleClick}>
+                {children}
     </button>
 );
 
