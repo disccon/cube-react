@@ -26,17 +26,6 @@ it('State App', () => {
 
 
 
-// it('Not work', () => {
-//     expect(wrapper.find('.table').childAt(0).childAt(1).childAt(1).type()).toEqual('td');
-//     expect(wrapper.state().minusTop).toEqual(5);
-//     expect(wrapper.state().minusLeft).toEqual(5);
-//     wrapper.find('.table').childAt(0).childAt(1).childAt(1).simulate('mouseover');
-//     expect(wrapper.state().minusTop).toEqual(5); //toEqual() = 3  // minusTop: target.offsetLeft + 3, target.offsetLeft - not work
-//     expect(wrapper.state().minusLeft).toEqual(5); //3  // minusLeft: target.offsetTop + 3, target.offsetTop - not work
-// });
-
-
-
 // test('should render App Jest ', () => {
 //     const component = renderer.create(
 //         <App/>,

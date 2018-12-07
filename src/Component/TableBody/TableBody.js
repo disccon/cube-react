@@ -1,23 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import classNames from 'classnames/bind';
-
 import styles from './TableBody.css';
+const cx = classNames.bind(styles);
 
-let cx = classNames.bind(styles);
-
-// const wrapper = cx({
-//     wrapper: true,
-// });
-
-// const table = cx({
-//     table: true,
-// });
 
 const TableBody = ({children,cellSize})=> (
-    <div className="wrapper">
-        <table className="table">
+    <div className={cx('wrapper')}>
+        <table className={cx('table')}>
             <tbody>
                 {children.map((trLists) => {
                     return <tr key={trLists[0].row} keys={trLists[0].row}>

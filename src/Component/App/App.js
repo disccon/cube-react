@@ -7,7 +7,7 @@ import classNames from 'classnames/bind';
 import styles from './App.css';
 let cx = classNames.bind(styles);
 
-let setTimeoutMouseleave;
+
 export default class App extends React.Component{
     constructor(props) {
         super(props);
@@ -23,6 +23,7 @@ export default class App extends React.Component{
             keyRow: null,
             keyCell: null,
         };
+        this.setTimeoutMouseleave = null;
     }
     componentWillMount(){
         this.setState({
@@ -43,92 +44,48 @@ export default class App extends React.Component{
     addCell = () => {
         const { table } = this.state;
         this.setState({
-            table: table.map((trLists) => { return[...trLists,{ row: trLists[trLists.length -1].row, cell: trLists[trLists.length -1].cell + 1}] })
+            table: table.map((trLists) => ([...trLists,{ row: trLists[trLists.length -1].row, cell: trLists[trLists.length -1].cell + 1}]))
         });
     };
     addRow = () => {
         const { table } = this.state;
-        //table: [...table, [...table[table.length -1],{row: table[table.length -1].row + 1, cell: table[table.length -1].cell}]]
         this.setState({
-            table: [...table, table[table.length -1].map((trLists) => { return{ row: trLists.row + 1, cell: trLists.cell}})],
+            table: [...table, table[table.length -1].map((trLists) => ({row: trLists.row + 1, cell: trLists.cell}))],
         });
     };
     deleteCells = () => {
-        const { table, keyCell, cellSize, minusTop } = this.state;
-        const tableCellLength = table[0].length;
-        let tableWidth = tableCellLength * (cellSize + 2) + 3 - cellSize;
-        if(tableCellLength <= 2) {
-            this.setState({
-                minusTopDisplay: false,
-            });
-        }
-        const indexCell = (minusTop - 5) / (cellSize + 2);
-        let newKey;
-        if( indexCell === (tableCellLength - 1) && tableCellLength > 1){
-            newKey = table[0][indexCell -1].cell
-        }
-        if( indexCell < (tableCellLength -1)){
-            newKey = table[0][indexCell +1].cell
-        }
-        if(tableCellLength > 1) {
-            let newTableCell = table.map((trLists) => { return trLists.filter((arrIndex, index, arr) => {
-                return arrIndex.cell !== keyCell
-            }) })
-            this.setState({
-                table: newTableCell,
-                keyCell: newKey,
-            });
-            if(minusTop >= tableWidth){
-                this.setState({
-                    minusTop: tableWidth - ( cellSize + 2),
-                });
-            }
-        }
+        const { table, keyCell } = this.state;
+        this.setState({
+            minusTopDisplay: false,
+        });
+        const newTableCell = table.map((trLists) => { return trLists.filter((arrIndex, index, arr) => {
+            return arrIndex.cell !== keyCell
+        }) })
+        this.setState({
+            table: newTableCell,
+        });
     };
     deleteRow = () => {
-        const { table, cellSize, keyRow, minusLeft } = this.state;
-        const tableRowLength = table.length;
-        const tableHeight = tableRowLength * (cellSize + 2) + 3 - cellSize;
-        const indexRow = (minusLeft - 5) / (cellSize + 2);
-        let newKey;
-        if( indexRow === (tableRowLength - 1) && tableRowLength > 1){
-            newKey = table[indexRow -1][0].row
-        }
-        if( indexRow < (tableRowLength -1)){
-            newKey = table[indexRow + 1][0].row
-        }
-        if(tableRowLength <= 2) {
-            this.setState({
-                minusLeftDisplay:  false,
-            });
-        }
-        if(tableRowLength > 1) {
-            let filetArrIndex = 0;
-            let newTableRow = table.filter((arrIndex, index, arr) => {
-                if(filetArrIndex <= table.length) {
-                    filetArrIndex = 0
-                }
-                return arrIndex[filetArrIndex++].row !== keyRow
-            })
-            this.setState({
-               table: newTableRow,
-               keyRow: newKey,
-            });
-            if(minusLeft >= tableHeight){
-                this.setState({
-                    minusLeft: tableHeight - ( cellSize + 2),
-                });
-            }
-        }
+        const { table, keyRow } = this.state;
+        this.setState({
+            minusLeftDisplay:  false,
+        });
+        const newTableRow = table.filter((arrIndex, index, arr) => {
+            return arrIndex[0].row !== keyRow
+        })
+        this.setState({
+           table: newTableRow,
+        });
     };
     mouseOverTable = ({target}) => {
-        clearTimeout(setTimeoutMouseleave)
-        if(this.state.table.length > 1){
+        clearTimeout(this.setTimeoutMouseleave)
+        const { table } = this.state;
+        if(table.length > 1){
             this.setState({
                 minusLeftDisplay:  true,
             });
         }
-        if(this.state.table[0].length > 1){
+        if(table[0].length > 1){
             this.setState({
                 minusTopDisplay: true,
             });
@@ -143,7 +100,7 @@ export default class App extends React.Component{
         }
     };
     leaveTable = () => {
-        setTimeoutMouseleave = setTimeout(() => {
+        this.setTimeoutMouseleave = setTimeout(() => {
             this.setState({
                 minusTopDisplay: false,
                 minusLeftDisplay: false,
@@ -152,34 +109,14 @@ export default class App extends React.Component{
     };
     render() {
         const { minusTopDisplay, minusLeftDisplay, cellSize, minusTop, minusLeft, table } = this.state;
-        const minusTopDisplayClass = classNames({
-            'button-minus button-minus_top': !minusTopDisplay,
-            'button-minus button-minus_top button-minus_animation-display': minusTopDisplay,
-        });
-        const minusLeftDisplayClass = classNames({
-            'button-minus button-minus_left': !minusLeftDisplay,
-            'button-minus button-minus_left button-minus_animation-display': minusLeftDisplay,
-        });
-        const blockTable = cx({
-            "block-table": true,
-        });
-        const wrapperTable = cx({
-            "wrapper-table": true,
-        });
-        const buttonPlusRight = cx({
-            "button-plus button-plus_right": true,
-        });
-        const buttonPlusBottom = cx({
-            "button-plus button-plus_bottom": true,
-        });
         return (
-            <div className={blockTable}>
-                <div className={wrapperTable} onMouseLeave={this.leaveTable} onMouseOver={this.mouseOverTable}>
-                    <Button classButton={minusTopDisplayClass} cellSize={cellSize}
+            <div className={cx('block-table')}>
+                <div className={cx('wrapper-table')} onMouseLeave={this.leaveTable} onMouseOver={this.mouseOverTable}>
+                    <Button minusTopDisplay={minusTopDisplay} cellSize={cellSize}
                             minusTop={minusTop} handleClick={this.deleteCells}>
                         <span>-</span>
                     </Button>
-                    <Button classButton={minusLeftDisplayClass} cellSize={cellSize}
+                    <Button minusLeftDisplay={minusLeftDisplay} cellSize={cellSize}
                             minusLeft={minusLeft} handleClick={this.deleteRow}>
                         <span>-</span>
                     </Button>
@@ -187,11 +124,11 @@ export default class App extends React.Component{
                         {table}
                     </TableBody>
                 </div>
-                <Button classButton={buttonPlusRight} cellSize={cellSize}
+                <Button classButton="button-plus button-plus_right" cellSize={cellSize}
                         handleClick={this.addCell}>
                     <span>+</span>
                 </Button>
-                <Button classButton={buttonPlusBottom} cellSize={cellSize}
+                <Button classButton="button-plus button-plus_bottom" cellSize={cellSize}
                         handleClick={this.addRow}>
                     <span>+</span>
                 </Button>
