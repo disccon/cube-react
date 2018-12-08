@@ -4,7 +4,7 @@ import TableBody from "../TableBody/TableBody";
 import Button from "../Button/Button";
 
 import classNames from 'classnames/bind';
-import styles from './App.css';
+import styles from './App.scss';
 let cx = classNames.bind(styles);
 
 
