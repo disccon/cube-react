@@ -15,10 +15,10 @@ const TableBody = ({children,cellSize})=> (
                                 return <td key={tdList.cell} keys={tdList.cell}
                                            style={{width: `${cellSize}px`, minWidth: `${cellSize}px`, height: `${cellSize}px`}}>
                                                 {tdList.row}.{tdList.cell}
-                                       </td>
+                                       </td>;
                             })
                             }
-                    </tr>
+                    </tr>;
                 })
                 }
             </tbody>

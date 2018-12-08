@@ -18,7 +18,7 @@ const Button = ({children,classButton,handleClick,minusTop,minusLeft,cellSize,mi
             style={{left: `${minusTop}px`, top: `${minusLeft}px`, width: `${cellSize}px`, height: `${cellSize}px`}}
             onClick={handleClick}>
         {children}
-    </button>
+    </button>;
 };
 
 Button.propTypes = {

@@ -24,23 +24,23 @@ export default class App extends React.Component{
             keyCell: null,
         };
         this.setTimeoutMouseleave = null;
-    }
+    };
+    initialTable = () => {
+        let table = [];
+        for (let i = 0; i < this.state.initialHeight; i++) {
+            let children = [];
+            for (let j = 0; j < this.state.initialWidth; j++) {
+                children.push({ row: i+1, cell: j+1});
+            }
+            table.push(children);
+        }
+        return table;
+    };
     componentWillMount(){
         this.setState({
             table: this.initialTable(),
         });
-    }
-    initialTable = () => {
-        let table = []
-        for (let i = 0; i < this.state.initialHeight; i++) {
-            let children = []
-            for (let j = 0; j < this.state.initialWidth; j++) {
-                children.push({ row: i+1, cell: j+1})
-            }
-            table.push(children)
-        }
-        return table;
-    }
+    };
     addCell = () => {
         const { table } = this.state;
         this.setState({
@@ -58,9 +58,9 @@ export default class App extends React.Component{
         this.setState({
             minusTopDisplay: false,
         });
-        const newTableCell = table.map((trLists) => { return trLists.filter((arrIndex, index, arr) => {
+        const newTableCell = table.map((trLists) => (trLists.filter((arrIndex, index, arr) => {
             return arrIndex.cell !== keyCell
-        }) })
+        }) ))
         this.setState({
             table: newTableCell,
         });
@@ -71,7 +71,7 @@ export default class App extends React.Component{
             minusLeftDisplay:  false,
         });
         const newTableRow = table.filter((arrIndex, index, arr) => {
-            return arrIndex[0].row !== keyRow
+            return arrIndex[0].row !== keyRow;
         })
         this.setState({
            table: newTableRow,

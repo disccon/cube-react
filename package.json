@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "and": "^0.0.3",
     "chai": "^4.2.0",
     "classnames": "^2.2.6",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "3.3.5",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "jest": "^23.6.0",
     "node-sass": "^4.10.0",
     "prop-types": "^15.6.2",
@@ -21,8 +26,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint ./src",
     "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject"
+
   },
   "jest": {
     "snapshotSerializers": [
