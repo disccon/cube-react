@@ -14,7 +14,6 @@ const Button = ({children,classButton,handleClick,minusTop,minusLeft,cellSize,mi
         'button-minus button-minus_left': minusLeftDisplay === false,
         'button-minus button-minus_left button-minus_animation-display': minusLeftDisplay,
     });
-    console.log(minusTopDisplay === false)
     return <button type="button" className={classButtonProps}
             style={{left: `${minusTop}px`, top: `${minusLeft}px`, width: `${cellSize}px`, height: `${cellSize}px`}}
             onClick={handleClick}>
